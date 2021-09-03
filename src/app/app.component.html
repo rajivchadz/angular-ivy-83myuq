@@ -1,4 +1,42 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<h2>Candidates</h2>
+
+<input type="checkbox" value="male" checked='isGenderMale' (change)="checkMale(isGenderMale=!isGenderMale)">Male
+<input type="checkbox" value="female" checked='isGenderFemale' (change)="checkFemale(isGenderFemale=!isGenderFemale)"> Female
+<table style="border:'2px solid grey'">
+  <tr>
+    <td>First Name</td>
+    <td>Last Name</td>
+    <td>Email</td>
+    <td>Gender</td>
+  </tr>
+  <tr *ngFor="let data of viewArray">
+    <td>{{data.firstName}}</td>
+    <td>{{data.lastName}}</td>
+    <td>{{data.email}}</td>
+    <td>{{data.gender}}</td>
+  </tr>
+</table>
+
+<h2>Add Candidates</h2>
+
+<div>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit(this.userForm.value)">
+
+    <label for="firstName">First Name: </label>
+    <input type="text" formControlName="firstName"> <br>
+
+    <label for="firstName">Last Name: </label>
+    <input type="text" formControlName="lastName"><br>
+
+    <label for="firstName">Email: </label>
+    <input type="text" formControlName="email"><br>
+
+    <label for="firstName">Gender: </label>
+    <input type="radio" value="male" formControlName="gender"> Male
+    <input type="radio" value="female"formControlName="gender"> Female <br>
+
+    <button class="btn-button" type="button" (click)="onSubmit(this.userForm.value)">Submit</button>
+  </form>
+
+</div>
